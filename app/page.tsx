@@ -12,7 +12,7 @@ export default async function Home() {
         <ul>
           {decks.map((deck) => (
             <li>
-              <Link key={deck.id} href={`/editor/${deck.id}`}>
+              <Link key={deck.id} href={`/${deck.id}`}>
                 {deck.name}
               </Link>
             </li>
