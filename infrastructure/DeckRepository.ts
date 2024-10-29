@@ -12,7 +12,21 @@ export class DeckRepository implements IDeckRepository {
       .where(eq(decksTable.id, id))
       .then((row) => row![0])
 
+    return DeckRepository.fromRow(row)
+  }
+
+  async all(): Promise<Deck[]> {
+    const rows = await db
+      .select()
+      .from(decksTable)
+      .then((rows) => rows!)
+
+    return rows.map(DeckRepository.fromRow)
+  }
+
+  private static fromRow(row: any): Deck {
     return {
+      id: row.id,
       name: row.name,
       mainboard: new Set(row.mainboard as []),
       sideboard: new Set(row.sideboard as []),

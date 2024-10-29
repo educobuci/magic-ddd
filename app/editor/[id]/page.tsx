@@ -1,10 +1,9 @@
 import { Deck } from '@/domain/Deck'
-import { db } from '@/db'
-import { decksTable } from '@/db/schema'
 import { DeckRepository } from '@/infrastructure/DeckRepository'
+import { assert } from 'console'
 
-export default async function Editor() {
-  const id = 'e990842a-2190-452b-afab-2607c2193aad'
+export default async function Editor({ params }: { params: { id: string } }) {
+  const id = (await params).id
 
   const deck: Deck = await new DeckRepository().findById(id)
 
