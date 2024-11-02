@@ -4,9 +4,11 @@ import { DeckRepository } from '@/infrastructure/DeckRepository'
 
 import Section from './_components/Section'
 
-type AsyncParams<T> = { params: Promise<T> }
-
-export default async function Editor({ params }: AsyncParams<{ id: string }>) {
+export default async function Editor({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
   const id = (await params).id
   const deckRepository: IDeckRepository = new DeckRepository()
   const deck: Deck = await deckRepository.findById(id)
