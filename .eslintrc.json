@@ -19,7 +19,8 @@
     "no-restricted-imports": [
       "warn",
       {
-        "patterns": ["./*", "../*"]
+        "patterns": ["./*", "../*"],
+        "allow": ["./_components/*"]
       }
     ]
   }

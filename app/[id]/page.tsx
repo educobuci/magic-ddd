@@ -1,24 +1,12 @@
-import { ReactNode } from 'react'
-
 import { Deck } from '@/domain/Deck'
 import { IDeckRepository } from '@/infrastructure/IDeckRepository'
 import { DeckRepository } from '@/infrastructure/DeckRepository'
 
+import Section from './_components/Section'
+
 type AsyncParams<T> = { params: Promise<T> }
 
-function Section({ children }: { children: ReactNode }) {
-  return (
-    <section className="rounded-md border border-gray-200 dark:border-gray-800 p-2">
-      {children}
-    </section>
-  )
-}
-
-type EditorProps = AsyncParams<{ id: string }> & {
-  deckRepository: IDeckRepository
-}
-
-export default async function Editor({ params }: EditorProps) {
+export default async function Editor({ params }: AsyncParams<{ id: string }>) {
   const id = (await params).id
   const deckRepository: IDeckRepository = new DeckRepository()
   const deck: Deck = await deckRepository.findById(id)
