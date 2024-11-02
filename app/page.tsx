@@ -1,9 +1,9 @@
-import { DeckRepository } from '@/infrastructure/DeckRepository'
 import Link from 'next/link'
+
+import { DeckRepository } from '@/infrastructure/DeckRepository'
 
 export default async function Home() {
   const repository = new DeckRepository()
-
   const decks = await repository.all()
 
   return (
@@ -11,10 +11,8 @@ export default async function Home() {
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <ul>
           {decks.map((deck) => (
-            <li>
-              <Link key={deck.id} href={`/${deck.id}`}>
-                {deck.name}
-              </Link>
+            <li key={deck.id}>
+              <Link href={`/${deck.id}`}>{deck.name}</Link>
             </li>
           ))}
         </ul>

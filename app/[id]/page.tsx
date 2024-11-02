@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 
 import { Deck } from '@/domain/Deck'
+import { IDeckRepository } from '@/infrastructure/IDeckRepository'
 import { DeckRepository } from '@/infrastructure/DeckRepository'
 
 type AsyncParams<T> = { params: Promise<T> }
@@ -13,12 +14,18 @@ function Section({ children }: { children: ReactNode }) {
   )
 }
 
-export default async function Editor({ params }: AsyncParams<{ id: string }>) {
+type EditorProps = AsyncParams<{ id: string }> & {
+  deckRepository: IDeckRepository
+}
+
+export default async function Editor({ params }: EditorProps) {
   const id = (await params).id
-  const deck: Deck = await new DeckRepository().findById(id)
+  const deckRepository: IDeckRepository = new DeckRepository()
+  const deck: Deck = await deckRepository.findById(id)
 
   return (
     <div className="p-4 space-y-4">
+      <title>{deck.name}</title>
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         {deck.name}
       </h1>

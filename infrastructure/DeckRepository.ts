@@ -1,8 +1,9 @@
+import { eq } from 'drizzle-orm'
+
 import { decksTable } from '@/db/schema'
-import { IDeckRepository } from './IDeckRepository'
 import { Deck } from '@/domain/Deck'
 import { db } from '@/db'
-import { eq } from 'drizzle-orm'
+import { IDeckRepository } from '@/infrastructure/IDeckRepository'
 
 export class DeckRepository implements IDeckRepository {
   async findById(id: string): Promise<Deck> {
@@ -24,7 +25,12 @@ export class DeckRepository implements IDeckRepository {
     return rows.map(DeckRepository.fromRow)
   }
 
-  private static fromRow(row: any): Deck {
+  private static fromRow(row: {
+    id: string
+    name: string
+    mainboard: string[]
+    sideboard: string[]
+  }): Deck {
     return {
       id: row.id,
       name: row.name,
