@@ -3,6 +3,7 @@ import { IDeckRepository } from '@/infrastructure/IDeckRepository'
 import { DeckRepository } from '@/infrastructure/DeckRepository'
 
 import Section from './_components/Section'
+import Search from './_components/Search'
 
 export default async function Editor({
   params,
@@ -20,12 +21,25 @@ export default async function Editor({
         {deck.name}
       </h1>
       <div className="grid grid-cols-[auto,400px,auto] gap-4">
-        <Section>Search</Section>
+        <Section>
+          <Search />
+        </Section>
         <Section>Details</Section>
         <Section>
-          {Array.from(deck.mainboard).map((card) => (
-            <div key={card.name}>{card.name}</div>
-          ))}
+          <div>
+            <h2>Mainboard</h2>
+            {Array.from(deck.mainboard).map((card) => (
+              <div key={card.name}>{card.name}</div>
+            ))}
+          </div>
+          {deck.sideboard.size > 0 && (
+            <div>
+              <h2>Sideboard</h2>
+              {Array.from(deck.sideboard).map((card) => (
+                <div key={card.name}>{card.name}</div>
+              ))}
+            </div>
+          )}
         </Section>
       </div>
     </div>
