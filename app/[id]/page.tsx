@@ -4,6 +4,7 @@ import { DeckRepository } from '@/infrastructure/DeckRepository'
 
 import Section from './_components/Section'
 import Search from './_components/Search'
+import { ModeToggle } from '@/components/ModeToggle'
 
 export default async function Editor({
   params,
@@ -17,9 +18,14 @@ export default async function Editor({
   return (
     <div className="p-4 space-y-4">
       <title>{deck.name}</title>
-      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-        {deck.name}
-      </h1>
+      <header className="flex w-full">
+        <h1 className="flex-grow scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+          {deck.name}
+        </h1>
+        <div className="flex-shrink">
+          <ModeToggle />
+        </div>
+      </header>
       <div className="grid grid-cols-[auto,400px,auto] gap-4">
         <Section>
           <Search />
