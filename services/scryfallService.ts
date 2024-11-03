@@ -1,4 +1,4 @@
-import { Card, CardType, Supertype } from '@/domain/Card'
+import { Card, CardType, Color, Supertype } from '@/domain/Card'
 
 export const search = async (query: string): Promise<Card[]> => {
   const response = await fetch(
@@ -12,19 +12,29 @@ export const search = async (query: string): Promise<Card[]> => {
   return []
 }
 
-function jsonToCard(json: any): Card {
+interface ScryfallCard {
+  type_line: string
+  colors: string[]
+  color_identity: string[]
+  name: string
+}
+
+function jsonToCard(json: ScryfallCard): Card {
   return {
     cardType: getCardType(json.type_line),
-    color: json.colors,
-    colorIndicator: json.color_identity,
-    name: json.name,
+    color: json.colors as Color[],
+    colorIndicator: json.color_identity as Color[],
+    name: json.name.split(' // ')[0],
   }
 }
 
-function getCardType(json: any): CardType {
-  const types = json.type_line?.match(/^\w+/)
-  if (Object.values(Supertype).includes(types?.[0])) {
-    return types[1]
+function getCardType(typeLine: string): CardType {
+  const types = typeLine.match(/^\w+/)
+  if (!types) {
+    throw new Error('Invalid type line')
   }
-  return types?.[0]
+  if (Object.values(Supertype).includes(types[0] as Supertype)) {
+    return types[1] as CardType
+  }
+  return types[0] as CardType
 }

@@ -1,4 +1,4 @@
-export const Colors = {
+export const Color = {
   White: 'W',
   Blue: 'U',
   Black: 'B',
@@ -6,7 +6,7 @@ export const Colors = {
   Green: 'G',
 } as const
 
-export type Colors = (typeof Colors)[keyof typeof Colors]
+export type Color = (typeof Color)[keyof typeof Color]
 
 export type ManaType = 'W' | 'U' | 'B' | 'R' | 'G' | 'C' | 'X' | 'P' | 'S'
 export type HybridMana = [ManaType, ManaType]
@@ -45,8 +45,8 @@ export type BaseCard<T extends CardType> = {
   name: string
   cardType: T
 
-  color?: Colors[] | undefined
-  colorIndicator?: Colors[] | undefined
+  color?: Color[] | undefined
+  colorIndicator?: Color[] | undefined
   manaCost?: ManaCost | ManaCost[]
   rulesText?: string | undefined
   subtype?: string[] | undefined
