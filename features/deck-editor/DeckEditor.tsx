@@ -1,6 +1,5 @@
 import { Deck } from '@/domain/Deck'
 import { ModeToggle } from '@/components/ModeToggle'
-import ReactQueryProvider from '@/providers/ReactQueryProvider'
 import Section from '@/features/deck-editor/Section'
 import Search from '@/features/deck-editor/Search'
 
@@ -17,28 +16,26 @@ export default async function DeckEditor({ deck }: { deck: Deck }) {
         </div>
       </header>
       <div className="grid grid-cols-[1fr,400px,1fr] gap-4">
-        <ReactQueryProvider>
-          <Section>
-            <Search />
-          </Section>
-          <Section>Details</Section>
-          <Section>
+        <Section>
+          <Search />
+        </Section>
+        <Section>Details</Section>
+        <Section>
+          <div>
+            <h2>Mainboard</h2>
+            {Array.from(deck.mainboard).map((card) => (
+              <div key={card.name}>{card.name}</div>
+            ))}
+          </div>
+          {deck.sideboard.size > 0 && (
             <div>
-              <h2>Mainboard</h2>
-              {Array.from(deck.mainboard).map((card) => (
+              <h2>Sideboard</h2>
+              {Array.from(deck.sideboard).map((card) => (
                 <div key={card.name}>{card.name}</div>
               ))}
             </div>
-            {deck.sideboard.size > 0 && (
-              <div>
-                <h2>Sideboard</h2>
-                {Array.from(deck.sideboard).map((card) => (
-                  <div key={card.name}>{card.name}</div>
-                ))}
-              </div>
-            )}
-          </Section>
-        </ReactQueryProvider>
+          )}
+        </Section>
       </div>
     </div>
   )
