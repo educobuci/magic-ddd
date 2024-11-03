@@ -1,10 +1,11 @@
 import { Deck } from '@/domain/Deck'
 import { IDeckRepository } from '@/infrastructure/IDeckRepository'
 import { DeckRepository } from '@/infrastructure/DeckRepository'
+import { ModeToggle } from '@/components/ModeToggle'
+import ReactQueryProvider from '@/providers/ReactQueryProvider'
 
 import Section from './_components/Section'
 import Search from './_components/Search'
-import { ModeToggle } from '@/components/ModeToggle'
 
 export default async function Editor({
   params,
@@ -26,27 +27,29 @@ export default async function Editor({
           <ModeToggle />
         </div>
       </header>
-      <div className="grid grid-cols-[auto,400px,auto] gap-4">
-        <Section>
-          <Search />
-        </Section>
-        <Section>Details</Section>
-        <Section>
-          <div>
-            <h2>Mainboard</h2>
-            {Array.from(deck.mainboard).map((card) => (
-              <div key={card.name}>{card.name}</div>
-            ))}
-          </div>
-          {deck.sideboard.size > 0 && (
+      <div className="grid grid-cols-[1fr,400px,1fr] gap-4">
+        <ReactQueryProvider>
+          <Section>
+            <Search />
+          </Section>
+          <Section>Details</Section>
+          <Section>
             <div>
-              <h2>Sideboard</h2>
-              {Array.from(deck.sideboard).map((card) => (
+              <h2>Mainboard</h2>
+              {Array.from(deck.mainboard).map((card) => (
                 <div key={card.name}>{card.name}</div>
               ))}
             </div>
-          )}
-        </Section>
+            {deck.sideboard.size > 0 && (
+              <div>
+                <h2>Sideboard</h2>
+                {Array.from(deck.sideboard).map((card) => (
+                  <div key={card.name}>{card.name}</div>
+                ))}
+              </div>
+            )}
+          </Section>
+        </ReactQueryProvider>
       </div>
     </div>
   )

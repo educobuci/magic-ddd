@@ -15,13 +15,6 @@
         ],
         "newlines-between": "always"
       }
-    ],
-    "no-restricted-imports": [
-      "warn",
-      {
-        "patterns": ["./*", "../*"],
-        "allow": ["./_components/*"]
-      }
     ]
   }
 }
