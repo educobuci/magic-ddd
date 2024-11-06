@@ -5,6 +5,9 @@ import { useQuery } from '@tanstack/react-query'
 
 import { Input } from '@/components/ui/input'
 import { search } from '@/services/scryfallService'
+import { useList } from '@/components/ui/list/useList'
+import List from '@/components/ui/list'
+import ListItem from '@/components/ui/list/ListItem'
 
 export default function Search() {
   const [query, setQuery] = useState('')
@@ -14,6 +17,10 @@ export default function Search() {
     queryFn: () => search(query),
     enabled: query.length > 2,
   })
+
+  const { control, selected, setSelected, clearSelected } = useList(
+    () => cards?.length ?? 0,
+  )
 
   const handleSearchChance = (e: ChangeEvent<HTMLInputElement>): void => {
     setQuery(e.target.value)
@@ -27,7 +34,17 @@ export default function Search() {
         placeholder="Search for cards..."
         autoFocus
       ></Input>
-      {cards?.map((card) => <div key={card.name}>{card.name}</div>)}
+      <List ref={control}>
+        {cards?.map((card, index) => (
+          <ListItem
+            isSelected={index === selected?.row}
+            onClick={() => setSelected({ row: index, section: 0 })}
+            key={card.name}
+          >
+            {card.name}
+          </ListItem>
+        ))}
+      </List>
     </div>
   )
 }
