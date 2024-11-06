@@ -5,7 +5,7 @@ import Search from '@/features/deck-editor/Search'
 
 export default async function DeckEditor({ deck }: { deck: Deck }) {
   return (
-    <div className="p-4 space-y-4">
+    <div className="p-4 space-y-4 h-screen max-h-screen flex flex-col">
       <title>{deck.name}</title>
       <header className="flex w-full">
         <h1 className="flex-grow scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
@@ -15,7 +15,7 @@ export default async function DeckEditor({ deck }: { deck: Deck }) {
           <ModeToggle />
         </div>
       </header>
-      <div className="grid grid-cols-[1fr,400px,1fr] gap-4">
+      <div className="grid grid-cols-[1fr,400px,1fr] gap-4 flex-grow">
         <Section>
           <Search />
         </Section>
