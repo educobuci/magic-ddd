@@ -20,7 +20,7 @@ export default function Search() {
   }
 
   return (
-    <div className="p-4 space-y-4 overflow-scroll max-h-full">
+    <div className="p-4 space-y-4 overflow-y-auto max-h-full">
       <Input
         defaultValue={query}
         onChange={handleSearchChance}
