@@ -6,7 +6,8 @@ const List = forwardRef<HTMLUListElement, PropsWithChildren<object>>(
       <ul
         ref={ref}
         tabIndex={0}
-        className="flex-grow max-h-full overflow-y-auto select-none focus:outline-none w-full focus:ring-2 focus:ring-indigo-500 rounded"
+        className="flex-grow max-h-full rounded border border-input bg-transparent shadow-sm select-none
+          transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
       >
         {children}
       </ul>
