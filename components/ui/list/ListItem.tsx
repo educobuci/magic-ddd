@@ -2,7 +2,7 @@ import { MouseEventHandler, PropsWithChildren } from 'react'
 
 interface ListItemProps {
   isSelected: boolean
-  onClick?: MouseEventHandler<HTMLLIElement> | undefined
+  onClick?: MouseEventHandler<HTMLDivElement> | undefined
 }
 
 const ListItem = ({
@@ -11,14 +11,14 @@ const ListItem = ({
   children,
 }: PropsWithChildren<ListItemProps>) => {
   return (
-    <li
+    <div
       onMouseDown={onClick}
       className={`px-3 py-1 ${
         isSelected ? 'bg-gray-200 dark:bg-gray-600' : ''
       }`}
     >
       {children}
-    </li>
+    </div>
   )
 }
 
