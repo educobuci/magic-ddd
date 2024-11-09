@@ -16,7 +16,7 @@ export default function Search({
 }: {
   setHighlightedCard: (card: CardView | null) => void
 }) {
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState('her')
   const search: SearchCard = searchCard
 
   const { data: cards, isLoading } = useQuery({
@@ -48,7 +48,7 @@ export default function Search({
   }, [cards, clearSelected])
 
   return (
-    <div className="p-4 space-y-4 overflow-y-auto h-full flex flex-col">
+    <div className="p-4 space-y-4 overflow-hidden h-full flex flex-col">
       <Input
         defaultValue={query}
         onChange={handleSearchChange}

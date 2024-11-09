@@ -9,7 +9,7 @@ const List = forwardRef<
       {...props}
       ref={ref}
       tabIndex={0}
-      className="overflow-hidden flex-grow max-h-full rounded border border-input bg-transparent shadow-sm select-none
+      className="overflow-auto h-full rounded border border-input bg-transparent shadow-sm select-none
           transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
     >
       {children}

@@ -23,14 +23,14 @@ export default function DeckEditor({ deck }: { deck: Deck }) {
           <ModeToggle />
         </div>
       </header>
-      <div className="grid grid-cols-[1fr,minmax(0,400px),1fr] gap-4 flex-grow">
-        <Section>
+      <div className="flex flex-grow overflow-hidden gap-4 relative">
+        <section className="basis-1/3 rounded-md border p-2">
           <Search setHighlightedCard={setHighlightedCard} />
-        </Section>
-        <Section>
+        </section>
+        <section className="basis-1/3 max-w-[400px] rounded-md border p-2">
           <Hightlight highlightedCard={highlightedCard} />
-        </Section>
-        <Section>
+        </section>
+        <section className="basis-1/3 rounded-md border p-2">
           <div>
             <h2>Mainboard</h2>
             {Array.from(deck.mainboard).map((card) => (
@@ -45,7 +45,7 @@ export default function DeckEditor({ deck }: { deck: Deck }) {
               ))}
             </div>
           )}
-        </Section>
+        </section>
       </div>
     </div>
   )
