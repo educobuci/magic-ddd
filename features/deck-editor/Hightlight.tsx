@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 
 import { CardView } from '@/services/types'
 import { Skeleton } from '@/components/ui/skeleton'
+import { cn } from '@/lib/utils'
 
 export default function Hightlight({
   highlightedCard,
@@ -23,7 +24,10 @@ export default function Hightlight({
     <div className="flex flex-col">
       {isLoading && <Skeleton className="aspect-[5/7] rounded-xl w-full" />}
       <Image
-        className={isLoading ? 'invisible' : 'visible'}
+        className={cn(
+          isLoading ? 'invisible' : 'visible',
+          'rounded-xl overflow-hidden',
+        )}
         src={highlightedCard?.imageUrl || ''}
         alt={highlightedCard?.name || 'Highlighted card'}
         width={500}
