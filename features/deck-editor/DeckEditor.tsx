@@ -1,9 +1,17 @@
+'use client'
+
+import { useState } from 'react'
+
 import { Deck } from '@/domain/Deck'
 import { ModeToggle } from '@/components/ModeToggle'
 import Section from '@/features/deck-editor/Section'
 import Search from '@/features/deck-editor/Search'
+import { CardView } from '@/services/types'
+import Hightlight from '@/features/deck-editor/Hightlight'
 
-export default async function DeckEditor({ deck }: { deck: Deck }) {
+export default function DeckEditor({ deck }: { deck: Deck }) {
+  const [highlightedCard, setHighlightedCard] = useState<CardView | null>(null)
+
   return (
     <div className="p-4 space-y-4 h-screen max-h-screen flex flex-col">
       <title>{deck.name}</title>
@@ -15,11 +23,13 @@ export default async function DeckEditor({ deck }: { deck: Deck }) {
           <ModeToggle />
         </div>
       </header>
-      <div className="grid grid-cols-[1fr,400px,1fr] gap-4 flex-grow">
+      <div className="grid grid-cols-[1fr,minmax(0,400px),1fr] gap-4 flex-grow">
         <Section>
-          <Search />
+          <Search setHighlightedCard={setHighlightedCard} />
         </Section>
-        <Section>Details</Section>
+        <Section>
+          <Hightlight highlightedCard={highlightedCard} />
+        </Section>
         <Section>
           <div>
             <h2>Mainboard</h2>

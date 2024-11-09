@@ -1,3 +1,7 @@
 import { Card } from '@/domain/Card'
 
-export type SearchCard = (query: string) => Promise<Card[]>
+export type CardView = Card & {
+  imageUrl: string
+}
+
+export type SearchCard = (query: string) => Promise<CardView[]>

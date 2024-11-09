@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, useCallback, useState } from 'react'
+import { ChangeEvent, useCallback, useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { Input } from '@/components/ui/input'
@@ -9,9 +9,13 @@ import { useList } from '@/components/ui/list/useList'
 import List from '@/components/ui/list'
 import ListItem from '@/components/ui/list/ListItem'
 import { Skeleton } from '@/components/ui/skeleton'
-import { SearchCard } from '@/services/types'
+import { CardView, SearchCard } from '@/services/types'
 
-export default function Search() {
+export default function Search({
+  setHighlightedCard,
+}: {
+  setHighlightedCard: (card: CardView | null) => void
+}) {
   const [query, setQuery] = useState('')
   const search: SearchCard = searchCard
 
@@ -21,9 +25,8 @@ export default function Search() {
     enabled: query.length > 2,
   })
 
-  const { control, selected, setSelected } = useList<HTMLDivElement>(
-    () => cards?.length ?? 0,
-  )
+  const { control, selected, setSelected, clearSelected } =
+    useList<HTMLDivElement>(() => cards?.length ?? 0)
 
   const handleSearchChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>): void => {
@@ -31,6 +34,18 @@ export default function Search() {
     },
     [],
   )
+
+  useEffect(() => {
+    if (selected && cards) {
+      setHighlightedCard(cards[selected.row])
+    } else {
+      setHighlightedCard(null)
+    }
+  }, [setHighlightedCard, selected, cards])
+
+  useEffect(() => {
+    clearSelected()
+  }, [cards, clearSelected])
 
   return (
     <div className="p-4 space-y-4 overflow-y-auto h-full flex flex-col">

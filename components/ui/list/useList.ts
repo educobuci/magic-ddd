@@ -10,7 +10,7 @@ export function useList<TElement extends HTMLElement = HTMLUListElement>(
   numberOfSections: number = 1,
 ) {
   const [selected, setSelected] = useState<IndexPath | null>(null)
-  const clearSelected = () => setSelected(null)
+  const clearSelected = useCallback(() => setSelected(null), [])
   const control = useRef<TElement>(null)
 
   const onKeyDown = useCallback(
