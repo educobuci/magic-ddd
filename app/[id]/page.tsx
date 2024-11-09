@@ -2,7 +2,7 @@ import { Deck } from '@/domain/Deck'
 import { IDeckRepository } from '@/infrastructure/IDeckRepository'
 import { DeckRepository } from '@/infrastructure/DeckRepository'
 import ReactQueryProvider from '@/providers/ReactQueryProvider'
-import DeckEditor from '@/features/deck-editor/DeckEditor'
+import DeckEditor from '@/features/deck-editor/deck-editor'
 
 export default async function DeckEditorPage({
   params,

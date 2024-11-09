@@ -4,10 +4,9 @@ import { useState } from 'react'
 
 import { Deck } from '@/domain/Deck'
 import { ModeToggle } from '@/components/ModeToggle'
-import Section from '@/features/deck-editor/Section'
-import Search from '@/features/deck-editor/Search'
+import Search from '@/features/deck-editor/search'
 import { CardView } from '@/services/types'
-import Hightlight from '@/features/deck-editor/Hightlight'
+import CardDetails from '@/features/deck-editor/card-details'
 
 export default function DeckEditor({ deck }: { deck: Deck }) {
   const [highlightedCard, setHighlightedCard] = useState<CardView | null>(null)
@@ -28,7 +27,7 @@ export default function DeckEditor({ deck }: { deck: Deck }) {
           <Search setHighlightedCard={setHighlightedCard} />
         </section>
         <section className="basis-1/3 max-w-[400px] rounded-md border p-2">
-          <Hightlight highlightedCard={highlightedCard} />
+          <CardDetails highlightedCard={highlightedCard} />
         </section>
         <section className="basis-1/3 rounded-md border p-2">
           <div>
