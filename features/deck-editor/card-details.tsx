@@ -22,11 +22,11 @@ export default function CardDetails({
 
   return (
     <div className="flex flex-col">
-      {isLoading && <Skeleton className="aspect-[5/7] rounded-xl w-full" />}
+      {isLoading && <Skeleton className="aspect-[5/7] rounded-[4.3%] w-full" />}
       <Image
         className={cn(
           isLoading ? 'invisible' : 'visible',
-          'rounded-xl overflow-hidden',
+          'rounded-[4.3%] overflow-hidden border',
         )}
         src={highlightedCard?.imageUrl || ''}
         alt={highlightedCard?.name || 'Highlighted card'}
