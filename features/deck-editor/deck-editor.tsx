@@ -3,7 +3,7 @@
 import { useState } from 'react'
 
 import { Deck } from '@/domain/Deck'
-import { ModeToggle } from '@/components/ModeToggle'
+import { ModeToggle } from '@/components/mode-toggle'
 import Search from '@/features/deck-editor/search'
 import { CardView } from '@/services/types'
 import CardDetails from '@/features/deck-editor/card-details'

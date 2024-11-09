@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { ThemeProvider } from '@/components/ThemeProvider'
+import { ThemeProvider } from '@/components/theme-provider'
 
 import './globals.css'
 
