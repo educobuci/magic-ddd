@@ -1,6 +1,10 @@
 import { Card, CardType, Color, Supertype } from '@/domain/Card'
 
-export const search = async (query: string): Promise<Card[]> => {
+import { SearchCard } from './types'
+
+export const searchCard: SearchCard = async (
+  query: string,
+): Promise<Card[]> => {
   const response = await fetch(
     `https://api.scryfall.com/cards/search?q=${query}`,
   )
