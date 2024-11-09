@@ -16,7 +16,7 @@ export default function Search({
 }: {
   setHighlightedCard: (card: CardView | null) => void
 }) {
-  const [query, setQuery] = useState('her')
+  const [query, setQuery] = useState('')
   const search: SearchCard = searchCard
 
   const { data: cards, isLoading } = useQuery({
