@@ -9,7 +9,7 @@ export default function Hightlight({
 }: {
   highlightedCard: CardView | null
 }) {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     setIsLoading(true)
@@ -23,13 +23,14 @@ export default function Hightlight({
     <div className="flex flex-col">
       {isLoading && <Skeleton className="aspect-[5/7] rounded-xl w-full" />}
       <Image
-        className={isLoading ? 'hidden' : 'block'}
+        className={isLoading ? 'invisible' : 'visible'}
         src={highlightedCard?.imageUrl || ''}
         alt={highlightedCard?.name || 'Highlighted card'}
-        layout="responsive"
         width={500}
         height={500}
-        onLoad={() => setIsLoading(false)}
+        onLoad={() => {
+          setIsLoading(false)
+        }}
       />
     </div>
   )
