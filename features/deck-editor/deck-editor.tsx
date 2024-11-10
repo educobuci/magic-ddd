@@ -23,13 +23,13 @@ export default function DeckEditor({ deck }: { deck: Deck }) {
         </div>
       </header>
       <div className="flex flex-grow overflow-hidden gap-4 relative">
-        <section className="basis-1/3 rounded-md border p-2">
+        <section className="flex-grow rounded-md border p-2">
           <Search setHighlightedCard={setHighlightedCard} />
         </section>
-        <section className="basis-1/3 max-w-[400px] rounded-md border p-2">
+        <section className="flex-grow max-w-[400px] rounded-md border p-2">
           <CardDetails highlightedCard={highlightedCard} />
         </section>
-        <section className="basis-1/3 rounded-md border p-2">
+        <section className="flex-grow rounded-md border p-2">
           <div>
             <h2>Mainboard</h2>
             {Array.from(deck.mainboard).map((card) => (

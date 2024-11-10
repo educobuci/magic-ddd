@@ -1,13 +1,19 @@
 'use client'
 
-import { ChangeEvent, useCallback, useEffect, useState } from 'react'
+import {
+  ChangeEvent,
+  KeyboardEvent,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { Input } from '@/components/ui/input'
 import { searchCard } from '@/services/scryfallService'
 import { useList } from '@/components/ui/list/useList'
 import List from '@/components/ui/list'
-import ListItem from '@/components/ui/list/ListItem'
+import ListItem from '@/components/ui/list/list-item'
 import { Skeleton } from '@/components/ui/skeleton'
 import { CardView, SearchCard } from '@/services/types'
 
@@ -35,6 +41,16 @@ export default function Search({
     [],
   )
 
+  const handleTextFieldKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault()
+        control.current?.focus()
+      }
+    },
+    [control],
+  )
+
   useEffect(() => {
     if (selected && cards) {
       setHighlightedCard(cards[selected.row])
@@ -52,6 +68,7 @@ export default function Search({
       <Input
         defaultValue={query}
         onChange={handleSearchChange}
+        onKeyDown={handleTextFieldKeyDown}
         placeholder="Search for cards..."
         autoFocus
       ></Input>

@@ -22,6 +22,11 @@ export default function CardDetails({
 
   return (
     <div className="flex flex-col">
+      <div>
+        <h3 className="mb-2  scroll-m-20 text-2xl font-semibold tracking-tight">
+          {highlightedCard.name}
+        </h3>
+      </div>
       {isLoading && <Skeleton className="aspect-[5/7] rounded-[4.3%] w-full" />}
       <Image
         className={cn(
