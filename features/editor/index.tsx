@@ -8,6 +8,8 @@ import Search from '@/features/editor/search'
 import { CardView } from '@/services/types'
 import CardDetails from '@/features/editor/details'
 
+import DeckList from './deck-list'
+
 export default function DeckEditor({ deck }: { deck: Deck }) {
   const [highlightedCard, setHighlightedCard] = useState<CardView | null>(null)
 
@@ -15,7 +17,7 @@ export default function DeckEditor({ deck }: { deck: Deck }) {
     <div className="p-4 space-y-4 h-screen max-h-screen flex flex-col">
       <title>{deck.name}</title>
       <header className="flex w-full">
-        <h1 className="flex-grow scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+        <h1 className="flex-grow scroll-m-20 text-4xl font-semibold tracking-tight lg:text-5xl">
           {deck.name}
         </h1>
         <div className="flex-shrink">
@@ -30,20 +32,7 @@ export default function DeckEditor({ deck }: { deck: Deck }) {
           <CardDetails highlightedCard={highlightedCard} />
         </section>
         <section className="flex-grow rounded-md border p-2">
-          <div>
-            <h2>Mainboard</h2>
-            {Array.from(deck.mainboard).map((card) => (
-              <div key={card.name}>{card.name}</div>
-            ))}
-          </div>
-          {deck.sideboard.size > 0 && (
-            <div>
-              <h2>Sideboard</h2>
-              {Array.from(deck.sideboard).map((card) => (
-                <div key={card.name}>{card.name}</div>
-              ))}
-            </div>
-          )}
+          <DeckList deck={deck} />
         </section>
       </div>
     </div>
