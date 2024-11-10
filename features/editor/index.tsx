@@ -4,9 +4,9 @@ import { useState } from 'react'
 
 import { Deck } from '@/domain/Deck'
 import { ModeToggle } from '@/components/mode-toggle'
-import Search from '@/features/deck-editor/search'
+import Search from '@/features/editor/search'
 import { CardView } from '@/services/types'
-import CardDetails from '@/features/deck-editor/card-details'
+import CardDetails from '@/features/editor/details'
 
 export default function DeckEditor({ deck }: { deck: Deck }) {
   const [highlightedCard, setHighlightedCard] = useState<CardView | null>(null)
