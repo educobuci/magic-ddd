@@ -51,12 +51,14 @@ export default function CardDetails({
           setIsLoading(false)
         }}
       />
-      <div className="pt-2 flex w-full gap-2 items-stretch justify-evenly ">
-        <Button className="flex-1" variant="secondary">
-          Add to side
-        </Button>
-        <Button className="flex-1">Add to main</Button>
-      </div>
+      {!isLoading && (
+        <div className="pt-2 flex w-full gap-2 items-stretch justify-evenly ">
+          <Button className="flex-1" variant="secondary">
+            Add to side
+          </Button>
+          <Button className="flex-1">Add to main</Button>
+        </div>
+      )}
     </div>
   )
 }

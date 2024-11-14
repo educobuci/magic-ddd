@@ -14,7 +14,7 @@ export default function DeckEditor({ deck }: { deck: Deck }) {
   const [highlightedCard, setHighlightedCard] = useState<Card | null>(null)
 
   return (
-    <div className="p-4 space-y-4 h-screen max-h-screen flex flex-col">
+    <div className="p-4 space-y-4 h-screen max-h-screen flex max-w-screen-2xl flex-col m-auto ">
       <title>{deck.name}</title>
       <header className="flex w-full">
         <h1 className="flex-grow scroll-m-20 text-4xl font-semibold tracking-tight lg:text-5xl">
@@ -25,13 +25,13 @@ export default function DeckEditor({ deck }: { deck: Deck }) {
         </div>
       </header>
       <div className="flex flex-grow overflow-hidden gap-4 relative">
-        <section className="flex-grow rounded-md border p-2">
+        <section className="flex-1 rounded-md border p-2">
           <Search setHighlightedCard={setHighlightedCard} />
         </section>
-        <section className="flex-grow max-w-[400px] rounded-md border p-2">
+        <section className="flex-none max-w-[400px] w-full rounded-md border p-2">
           <CardDetails highlightedCard={highlightedCard} />
         </section>
-        <section className="flex-grow">
+        <section className="flex-1">
           <DeckList deck={deck} />
         </section>
       </div>
