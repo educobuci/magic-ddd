@@ -1,17 +1,26 @@
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
-import { CardView } from '@/services/types'
 import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
+import { Card } from '@/domain/Card'
+
+const CARD_FRONT_IMAGE_URL = `https://c1.scryfall.com/file/scryfall-cards/normal/front`
 
 export default function CardDetails({
   highlightedCard,
 }: {
-  highlightedCard: CardView | null
+  highlightedCard: Card | null
 }) {
   const [isLoading, setIsLoading] = useState(false)
+
+  const imageUrl = useMemo(() => {
+    if (highlightedCard) {
+      const [folder, sub] = highlightedCard?.id.split('')
+      return `${CARD_FRONT_IMAGE_URL}/${folder}/${sub}/${highlightedCard.id}.jpg`
+    }
+  }, [highlightedCard])
 
   useEffect(() => {
     setIsLoading(true)
@@ -34,7 +43,7 @@ export default function CardDetails({
           isLoading ? 'invisible' : 'visible',
           'rounded-[4.3%] overflow-hidden border',
         )}
-        src={highlightedCard?.imageUrl || ''}
+        src={imageUrl || ''}
         alt={highlightedCard?.name || 'Highlighted card'}
         width={500}
         height={500}

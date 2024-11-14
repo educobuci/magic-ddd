@@ -15,7 +15,8 @@ import { useList } from '@/components/ui/list/useList'
 import List from '@/components/ui/list'
 import ListItem from '@/components/ui/list/list-item'
 import { Skeleton } from '@/components/ui/skeleton'
-import { CardView, SearchCard } from '@/services/types'
+import { SearchCard } from '@/services'
+import { CardView } from '@/types'
 
 export default function Search({
   setHighlightedCard,

@@ -5,13 +5,13 @@ import { useState } from 'react'
 import { Deck } from '@/domain/Deck'
 import { ModeToggle } from '@/components/mode-toggle'
 import Search from '@/features/editor/search'
-import { CardView } from '@/services/types'
 import CardDetails from '@/features/editor/details'
+import { Card } from '@/domain/Card'
 
 import DeckList from './deck-list'
 
 export default function DeckEditor({ deck }: { deck: Deck }) {
-  const [highlightedCard, setHighlightedCard] = useState<CardView | null>(null)
+  const [highlightedCard, setHighlightedCard] = useState<Card | null>(null)
 
   return (
     <div className="p-4 space-y-4 h-screen max-h-screen flex flex-col">

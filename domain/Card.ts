@@ -42,6 +42,7 @@ export type NonPermanentType =
 export type CardType = PermanentType | NonPermanentType
 
 export type BaseCard<T extends CardType> = {
+  id: string
   name: string
   cardType: T
 
