@@ -31,7 +31,7 @@ export default function DeckEditor({ deck }: { deck: Deck }) {
         <section className="flex-grow max-w-[400px] rounded-md border p-2">
           <CardDetails highlightedCard={highlightedCard} />
         </section>
-        <section className="flex-grow rounded-md border p-2">
+        <section className="flex-grow">
           <DeckList deck={deck} />
         </section>
       </div>
