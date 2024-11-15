@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 import { Deck } from '@/domain/Deck'
 import { ModeToggle } from '@/components/mode-toggle'
@@ -11,7 +11,16 @@ import { Card } from '@/domain/Card'
 import DeckList from './deck-list'
 
 export default function DeckEditor({ deck }: { deck: Deck }) {
+  const [deckState, setDeckState] = useState(deck)
   const [highlightedCard, setHighlightedCard] = useState<Card | null>(null)
+
+  const addCard = useCallback((card: Card) => {
+    setDeckState((previousDeck) => {
+      const mainboard = new Set(previousDeck.mainboard)
+      mainboard.add(card)
+      return { ...previousDeck, mainboard }
+    })
+  }, [])
 
   return (
     <div className="p-4 space-y-4 h-screen max-h-screen flex max-w-screen-2xl flex-col m-auto ">
@@ -29,10 +38,10 @@ export default function DeckEditor({ deck }: { deck: Deck }) {
           <Search setHighlightedCard={setHighlightedCard} />
         </section>
         <section className="flex-none max-w-[400px] w-full rounded-md border p-2">
-          <CardDetails highlightedCard={highlightedCard} />
+          <CardDetails highlightedCard={highlightedCard} addCard={addCard} />
         </section>
         <section className="flex-1">
-          <DeckList deck={deck} />
+          <DeckList deck={deckState} />
         </section>
       </div>
     </div>

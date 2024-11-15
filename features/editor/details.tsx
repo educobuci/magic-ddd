@@ -9,8 +9,10 @@ import { Card } from '@/domain/Card'
 const CARD_FRONT_IMAGE_URL = `https://c1.scryfall.com/file/scryfall-cards/normal/front`
 
 export default function CardDetails({
+  addCard,
   highlightedCard,
 }: {
+  addCard: (card: Card) => void
   highlightedCard: Card | null
 }) {
   const [isLoading, setIsLoading] = useState(false)
@@ -56,7 +58,14 @@ export default function CardDetails({
           <Button className="flex-1" variant="secondary">
             Add to side
           </Button>
-          <Button className="flex-1">Add to main</Button>
+          <Button
+            className="flex-1"
+            onClick={() => {
+              addCard({ ...highlightedCard })
+            }}
+          >
+            Add to main
+          </Button>
         </div>
       )}
     </div>

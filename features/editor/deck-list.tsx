@@ -1,11 +1,23 @@
+import { useMemo } from 'react'
+
 import List from '@/components/ui/list'
 import ListItem from '@/components/ui/list/list-item'
 import { useList } from '@/components/ui/list/useList'
 import { Deck } from '@/domain/Deck'
 
+type CardLines = Map<string, number>
+
 export default function DeckList({ deck }: { deck: Deck }) {
+  const cardLines = useMemo(() => {
+    return Array.from(deck.mainboard).reduce<CardLines>((acc, card) => {
+      const quantity = acc.get(card.name) ?? 0
+      acc.set(card.name, quantity + 1)
+      return acc
+    }, new Map())
+  }, [deck.mainboard])
+
   const { control, selected, setSelected } = useList<HTMLDivElement>(
-    () => deck.mainboard.size,
+    () => cardLines.size,
     deck.sideboard.size > 0 ? deck.mainboard.size + 1 : undefined,
   )
 
@@ -14,13 +26,13 @@ export default function DeckList({ deck }: { deck: Deck }) {
       <div className="p-4 font-semibold flex items-center leading-none">
         Mainboard
       </div>
-      {Array.from(deck.mainboard).map((card, index) => (
+      {[...cardLines.entries()].map(([name, quantity], index) => (
         <ListItem
-          isSelected={index === selected?.row && selected.section === 0}
-          onClick={() => setSelected({ row: index, section: 0 })}
-          key={card.name}
+          isSelected={index === selected?.row && selected.section === 1}
+          onClick={() => setSelected({ row: index, section: 1 })}
+          key={name}
         >
-          {card.name}
+          ({quantity}) - {name}
         </ListItem>
       ))}
       {deck.sideboard.size > 0 && (
@@ -28,13 +40,13 @@ export default function DeckList({ deck }: { deck: Deck }) {
           <div className="px-3 py-2 font-semibold flex items-center leading-none">
             Sideboard
           </div>
-          {Array.from(deck.sideboard).map((card, index) => (
+          {cardLines.entries().map(([name, quantity], index) => (
             <ListItem
               isSelected={index === selected?.row && selected.section === 1}
               onClick={() => setSelected({ row: index, section: 1 })}
-              key={card.name}
+              key={name}
             >
-              {card.name}
+              ({quantity}) - {name}
             </ListItem>
           ))}
         </>
