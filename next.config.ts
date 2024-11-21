@@ -2,7 +2,11 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['c1.scryfall.com'],
+    remotePatterns: [
+      {
+        hostname: 'c1.scryfall.com',
+      },
+    ],
   },
 }
 
