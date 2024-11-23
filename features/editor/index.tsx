@@ -54,7 +54,10 @@ export default function DeckEditor({ deck }: { deck: Deck }) {
           <CardDetails highlightedCard={highlightedCard} addCard={addCard} />
         </section>
         <section className="flex-1">
-          <DeckList deck={optimisticDeck.deck} />
+          <DeckList
+            deck={optimisticDeck.deck}
+            setHighlightedCard={setHighlightedCard}
+          />
         </section>
       </div>
     </div>

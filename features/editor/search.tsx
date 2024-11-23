@@ -16,12 +16,12 @@ import List from '@/components/ui/list'
 import ListItem from '@/components/ui/list/list-item'
 import { Skeleton } from '@/components/ui/skeleton'
 import { SearchCard } from '@/services'
-import { CardView } from '@/types'
+import { Card } from '@/domain/Card'
 
 export default function Search({
   setHighlightedCard,
 }: {
-  setHighlightedCard: (card: CardView | null) => void
+  setHighlightedCard: (card: Card | null) => void
 }) {
   const [query, setQuery] = useState('')
   const search: SearchCard = searchCard

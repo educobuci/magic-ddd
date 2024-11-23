@@ -17,7 +17,7 @@ const ListItem = ({
       onMouseDown={onClick}
       className={cn(
         isSelected && 'bg-accent text-accent-foreground',
-        `transition-colors px-3 py-1`,
+        `px-3 py-1`,
       )}
     >
       {children}
