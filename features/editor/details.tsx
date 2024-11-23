@@ -42,8 +42,8 @@ export default function CardDetails({
       {isLoading && <Skeleton className="aspect-[5/7] rounded-[4.3%] w-full" />}
       <Image
         className={cn(
-          isLoading ? 'invisible' : 'visible',
-          'rounded-[4.3%] overflow-hidden border',
+          isLoading ? 'invisible opacity-0' : 'visible opacity-100',
+          'transition-opacity  rounded-[4.3%] overflow-hidden border',
         )}
         src={imageUrl || ''}
         alt={highlightedCard?.name || 'Highlighted card'}
