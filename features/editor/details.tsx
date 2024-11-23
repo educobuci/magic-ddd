@@ -26,7 +26,7 @@ export default function CardDetails({
 
   useEffect(() => {
     setIsLoading(true)
-  }, [highlightedCard])
+  }, [imageUrl])
 
   if (!highlightedCard) {
     return null
