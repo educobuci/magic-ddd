@@ -5,6 +5,7 @@ import ListItem from '@/components/ui/list/list-item'
 import { useList } from '@/components/ui/list/useList'
 import { Deck } from '@/domain/Deck'
 import { Card } from '@/domain/Card'
+import QuantityLabel from '@/components/quantity-label'
 
 type CardLines = Map<string, [number, Card]>
 
@@ -48,7 +49,9 @@ export default function DeckList({
           onClick={() => setSelected({ row: index, section: 1 })}
           key={id}
         >
-          ({quantity}) - {card.name}
+          <div className="flex items-center gap-2">
+            <QuantityLabel quantity={quantity} /> {card.name}
+          </div>
         </ListItem>
       ))}
       {/* {deck.sideboard.size > 0 && (
