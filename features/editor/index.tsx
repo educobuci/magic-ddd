@@ -27,21 +27,15 @@ export default function DeckEditor({ deck }: { deck: Deck }) {
     })
   }
 
-  const spinnerComponent = (
-    <div className="fixed top-0 left-0 w-full h-full bg-white bg-opacity-75 flex items-center justify-center z-50">
-      <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900" />
-    </div>
-  )
-
   return (
     <div className="p-4 space-y-4 h-screen max-h-screen flex max-w-screen-2xl flex-col m-auto ">
-      <title>
-        {deck.name} {isPending && spinnerComponent}
-      </title>
-      <header className="flex w-full">
+      <header className="flex w-full items-center gap-2">
         <h1 className="flex-grow scroll-m-20 text-4xl font-semibold tracking-tight lg:text-5xl">
           {deck.name}
         </h1>
+        {isPending && (
+          <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+        )}
         <div className="flex-shrink">
           <ModeToggle />
         </div>

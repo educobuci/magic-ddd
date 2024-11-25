@@ -1,13 +1,6 @@
-import type { Metadata } from 'next'
-
 import { ThemeProvider } from '@/components/theme-provider'
 
 import './globals.css'
-
-export const metadata: Metadata = {
-  title: 'Magic DDD',
-  description: 'Magic the Gathering Editor in Domain-Driven Design',
-}
 
 export default function RootLayout({
   children,
@@ -17,7 +10,6 @@ export default function RootLayout({
   return (
     <>
       <html lang="en" suppressHydrationWarning>
-        <head />
         <body>
           <ThemeProvider
             attribute="class"
